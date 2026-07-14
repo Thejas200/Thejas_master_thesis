@@ -1,4 +1,4 @@
-# Stock Prediction And Fashion MNIST Experiments
+# Stock Prediction And Fashion MNIST
 
 This repository contains two GPU-based deep learning workflows:
 
