@@ -125,7 +125,7 @@ Both `app.py` and `train_two_stocks.py` use this file by default.
 
 After the stock environment, GPU check, and dataset are ready, use one of these two options.
 
-### Option A: Run Everything Through Streamlit
+### Option A: Run Everything Through Streamlit (Preferred)
 
 Use this option if you want to select the stock pair and start training from the browser.
 
