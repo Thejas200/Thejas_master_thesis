@@ -3,7 +3,7 @@
 This repository contains two GPU-based deep learning workflows:
 
 - Stock prediction using a Streamlit stock-pair selector and a GA+Markov LSTM training pipeline.
-- Fashion MNIST classification using the final notebook and its separate requirements file.
+- Fashion MNIST classification using the GA+Markov CNN training pipeline.
 
 ## Important GPU Requirement
 
