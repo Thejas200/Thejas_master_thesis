@@ -1,0 +1,102 @@
+{
+  "stock": "BRK-B",
+  "out_dir": "ga_markov_outputs_lstm/BRK-B",
+  "dataset_split_summary": {
+    "stock": "BRK-B",
+    "time_step": 120,
+    "total_rows": 3431,
+    "total_sequences": 3311,
+    "raw_start": "2011-05-05",
+    "raw_end": "2024-12-31",
+    "train": {
+      "label": "train",
+      "sequence_count": 2648,
+      "sequence_pct": 79.975838115373,
+      "target_start": "2011-10-25",
+      "target_end": "2022-05-10"
+    },
+    "val": {
+      "label": "val",
+      "sequence_count": 331,
+      "sequence_pct": 9.996979764421624,
+      "target_start": "2022-05-11",
+      "target_end": "2023-09-06"
+    },
+    "test": {
+      "label": "test",
+      "sequence_count": 332,
+      "sequence_pct": 10.027182120205376,
+      "target_start": "2023-09-07",
+      "target_end": "2024-12-31"
+    }
+  },
+  "dataset_split_plot_path": "ga_markov_outputs_lstm/BRK-B/dataset_split_BRK-B.png",
+  "dataset_split_detail_plot_path": "ga_markov_outputs_lstm/BRK-B/dataset_split_detail_BRK-B.png",
+  "conditioning_partner_stock": "BLK",
+  "feature_names": [
+    "target_close",
+    "partner_close",
+    "target_log_return",
+    "partner_log_return",
+    "target_roll_vol_20",
+    "target_ma_gap_20"
+  ],
+  "baseline_val_rmse": 0.03154453415426021,
+  "baseline_learning_curve_path": "ga_markov_outputs_lstm/BRK-B/baseline_learning_curve_BRK-B.png",
+  "ga_best_val_rmse": 0.01559749059161636,
+  "final_selected_val_rmse": 0.017432187342952495,
+  "selected_ga_candidate": {
+    "label": "ga_best",
+    "selection_method": "exact_global_minimum_search_val_rmse",
+    "generation": 8,
+    "candidate_id": 244,
+    "search_val_rmse": 0.01559749059161636,
+    "params": {
+      "units": 128,
+      "layers": 1,
+      "dropout": 0.062,
+      "batch_size": 32,
+      "bidir": false
+    }
+  },
+  "ga_evaluation_training": {
+    "max_epochs": 10,
+    "early_stopping_patience": 4,
+    "early_stopping_min_delta": 0.0001
+  },
+  "final_retraining": {
+    "max_epochs": 40,
+    "epochs_ran": 13,
+    "best_epoch": 7,
+    "early_stopping_patience": 6,
+    "early_stopping_min_delta": 0.0001,
+    "validation_rmse": 0.017432187342952495
+  },
+  "final_learning_curve_path": "ga_markov_outputs_lstm/BRK-B/final_learning_curve_BRK-B.png",
+  "train_plot_path": "ga_markov_outputs_lstm/BRK-B/prediction_train_BRK-B.png",
+  "val_plot_path": "ga_markov_outputs_lstm/BRK-B/prediction_validation_BRK-B.png",
+  "used_params": {
+    "units": 128,
+    "layers": 1,
+    "dropout": 0.062,
+    "batch_size": 32,
+    "bidir": false
+  },
+  "used_ga_candidate": true,
+  "selected_candidate_label": "ga_best",
+  "selected_candidate_generation": 8,
+  "selected_candidate_id": 244,
+  "selected_candidate_selection_method": "exact_global_minimum_search_val_rmse",
+  "selected_candidate_val_rmse_mean": 0.01559749059161636,
+  "selected_candidate_val_rmse_std": 0.0,
+  "selected_candidate_val_rmse_runs": [
+    0.01559749059161636
+  ],
+  "baseline_test_rmse": 24.284453466688955,
+  "final_test_rmse": 7.283812763604248,
+  "improvement_abs": 17.000640703084706,
+  "improvement_pct": 70.00627264024915,
+  "plot_path": "ga_markov_outputs_lstm/BRK-B/prediction_BRK-B.png",
+  "predictions_path": "ga_markov_outputs_lstm/BRK-B/predictions_BRK-B.csv",
+  "summary_path": "ga_markov_outputs_lstm/BRK-B/summary.json"
+}

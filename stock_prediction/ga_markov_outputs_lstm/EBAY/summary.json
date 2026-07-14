@@ -1,0 +1,72 @@
+{
+  "stock": "EBAY",
+  "out_dir": "ga_markov_outputs_lstm/EBAY",
+  "dataset_split_summary": {
+    "stock": "EBAY",
+    "time_step": 120,
+    "total_rows": 3431,
+    "total_sequences": 3311,
+    "raw_start": "2011-05-05",
+    "raw_end": "2024-12-31",
+    "train": {
+      "label": "train",
+      "sequence_count": 2648,
+      "sequence_pct": 79.975838115373,
+      "target_start": "2011-10-25",
+      "target_end": "2022-05-10"
+    },
+    "val": {
+      "label": "val",
+      "sequence_count": 331,
+      "sequence_pct": 9.996979764421624,
+      "target_start": "2022-05-11",
+      "target_end": "2023-09-06"
+    },
+    "test": {
+      "label": "test",
+      "sequence_count": 332,
+      "sequence_pct": 10.027182120205376,
+      "target_start": "2023-09-07",
+      "target_end": "2024-12-31"
+    }
+  },
+  "dataset_split_plot_path": "ga_markov_outputs_lstm/EBAY/dataset_split_EBAY.png",
+  "dataset_split_detail_plot_path": "ga_markov_outputs_lstm/EBAY/dataset_split_detail_EBAY.png",
+  "conditioning_partner_stock": "BLK",
+  "feature_names": [
+    "target_close",
+    "partner_close",
+    "target_log_return",
+    "partner_log_return",
+    "target_roll_vol_20",
+    "target_ma_gap_20"
+  ],
+  "baseline_val_rmse": 0.020092892994067264,
+  "baseline_learning_curve_path": "ga_markov_outputs_lstm/EBAY/baseline_learning_curve_EBAY.png",
+  "ga_best_val_rmse": 0.015669097364715574,
+  "final_selected_val_rmse": 0.015669097364715574,
+  "final_learning_curve_path": "ga_markov_outputs_lstm/EBAY/final_learning_curve_EBAY.png",
+  "train_plot_path": "ga_markov_outputs_lstm/EBAY/prediction_train_EBAY.png",
+  "val_plot_path": "ga_markov_outputs_lstm/EBAY/prediction_validation_EBAY.png",
+  "used_params": {
+    "units": 160,
+    "layers": 1,
+    "dropout": 0.109,
+    "batch_size": 32,
+    "bidir": true
+  },
+  "used_ga_candidate": true,
+  "selected_candidate_label": "ga_best",
+  "selected_candidate_val_rmse_mean": 0.015669097364715574,
+  "selected_candidate_val_rmse_std": 0.0,
+  "selected_candidate_val_rmse_runs": [
+    0.015669097364715574
+  ],
+  "baseline_test_rmse": 1.6029071652426887,
+  "final_test_rmse": 1.0270064928096576,
+  "improvement_abs": 0.5759006724330311,
+  "improvement_pct": 35.92851070360252,
+  "plot_path": "ga_markov_outputs_lstm/EBAY/prediction_EBAY.png",
+  "predictions_path": "ga_markov_outputs_lstm/EBAY/predictions_EBAY.csv",
+  "summary_path": "ga_markov_outputs_lstm/EBAY/summary.json"
+}

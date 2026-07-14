@@ -1,0 +1,102 @@
+{
+  "stock": "NFLX",
+  "out_dir": "ga_markov_outputs_lstm/NFLX",
+  "dataset_split_summary": {
+    "stock": "NFLX",
+    "time_step": 120,
+    "total_rows": 3431,
+    "total_sequences": 3311,
+    "raw_start": "2011-05-05",
+    "raw_end": "2024-12-31",
+    "train": {
+      "label": "train",
+      "sequence_count": 2648,
+      "sequence_pct": 79.975838115373,
+      "target_start": "2011-10-25",
+      "target_end": "2022-05-10"
+    },
+    "val": {
+      "label": "val",
+      "sequence_count": 331,
+      "sequence_pct": 9.996979764421624,
+      "target_start": "2022-05-11",
+      "target_end": "2023-09-06"
+    },
+    "test": {
+      "label": "test",
+      "sequence_count": 332,
+      "sequence_pct": 10.027182120205376,
+      "target_start": "2023-09-07",
+      "target_end": "2024-12-31"
+    }
+  },
+  "dataset_split_plot_path": "ga_markov_outputs_lstm/NFLX/dataset_split_NFLX.png",
+  "dataset_split_detail_plot_path": "ga_markov_outputs_lstm/NFLX/dataset_split_detail_NFLX.png",
+  "conditioning_partner_stock": "NVDA",
+  "feature_names": [
+    "target_close",
+    "partner_close",
+    "target_log_return",
+    "partner_log_return",
+    "target_roll_vol_20",
+    "target_ma_gap_20"
+  ],
+  "baseline_val_rmse": 0.03995763243900667,
+  "baseline_learning_curve_path": "ga_markov_outputs_lstm/NFLX/baseline_learning_curve_NFLX.png",
+  "ga_best_val_rmse": 0.016901519810077894,
+  "final_selected_val_rmse": 0.01877530905645238,
+  "selected_ga_candidate": {
+    "label": "ga_best",
+    "selection_method": "exact_global_minimum_search_val_rmse",
+    "generation": 9,
+    "candidate_id": 284,
+    "search_val_rmse": 0.016901519810077894,
+    "params": {
+      "units": 192,
+      "layers": 1,
+      "dropout": 0.315,
+      "batch_size": 32,
+      "bidir": false
+    }
+  },
+  "ga_evaluation_training": {
+    "max_epochs": 10,
+    "early_stopping_patience": 4,
+    "early_stopping_min_delta": 0.0001
+  },
+  "final_retraining": {
+    "max_epochs": 40,
+    "epochs_ran": 9,
+    "best_epoch": 3,
+    "early_stopping_patience": 6,
+    "early_stopping_min_delta": 0.0001,
+    "validation_rmse": 0.01877530905645238
+  },
+  "final_learning_curve_path": "ga_markov_outputs_lstm/NFLX/final_learning_curve_NFLX.png",
+  "train_plot_path": "ga_markov_outputs_lstm/NFLX/prediction_train_NFLX.png",
+  "val_plot_path": "ga_markov_outputs_lstm/NFLX/prediction_validation_NFLX.png",
+  "used_params": {
+    "units": 192,
+    "layers": 1,
+    "dropout": 0.315,
+    "batch_size": 32,
+    "bidir": false
+  },
+  "used_ga_candidate": true,
+  "selected_candidate_label": "ga_best",
+  "selected_candidate_generation": 9,
+  "selected_candidate_id": 284,
+  "selected_candidate_selection_method": "exact_global_minimum_search_val_rmse",
+  "selected_candidate_val_rmse_mean": 0.016901519810077894,
+  "selected_candidate_val_rmse_std": 0.0,
+  "selected_candidate_val_rmse_runs": [
+    0.016901519810077894
+  ],
+  "baseline_test_rmse": 27.695519657194218,
+  "final_test_rmse": 6.713883877820163,
+  "improvement_abs": 20.981635779374056,
+  "improvement_pct": 75.75823107519791,
+  "plot_path": "ga_markov_outputs_lstm/NFLX/prediction_NFLX.png",
+  "predictions_path": "ga_markov_outputs_lstm/NFLX/predictions_NFLX.csv",
+  "summary_path": "ga_markov_outputs_lstm/NFLX/summary.json"
+}

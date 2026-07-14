@@ -1,0 +1,72 @@
+{
+  "stock": "JPM",
+  "out_dir": "ga_markov_outputs_lstm/JPM",
+  "dataset_split_summary": {
+    "stock": "JPM",
+    "time_step": 120,
+    "total_rows": 3431,
+    "total_sequences": 3311,
+    "raw_start": "2011-05-05",
+    "raw_end": "2024-12-31",
+    "train": {
+      "label": "train",
+      "sequence_count": 2648,
+      "sequence_pct": 79.975838115373,
+      "target_start": "2011-10-25",
+      "target_end": "2022-05-10"
+    },
+    "val": {
+      "label": "val",
+      "sequence_count": 331,
+      "sequence_pct": 9.996979764421624,
+      "target_start": "2022-05-11",
+      "target_end": "2023-09-06"
+    },
+    "test": {
+      "label": "test",
+      "sequence_count": 332,
+      "sequence_pct": 10.027182120205376,
+      "target_start": "2023-09-07",
+      "target_end": "2024-12-31"
+    }
+  },
+  "dataset_split_plot_path": "ga_markov_outputs_lstm/JPM/dataset_split_JPM.png",
+  "dataset_split_detail_plot_path": "ga_markov_outputs_lstm/JPM/dataset_split_detail_JPM.png",
+  "conditioning_partner_stock": "BRK-B",
+  "feature_names": [
+    "target_close",
+    "partner_close",
+    "target_log_return",
+    "partner_log_return",
+    "target_roll_vol_20",
+    "target_ma_gap_20"
+  ],
+  "baseline_val_rmse": 0.03072215745548886,
+  "baseline_learning_curve_path": "ga_markov_outputs_lstm/JPM/baseline_learning_curve_JPM.png",
+  "ga_best_val_rmse": 0.018523285356043192,
+  "final_selected_val_rmse": 0.018523285356043192,
+  "final_learning_curve_path": "ga_markov_outputs_lstm/JPM/final_learning_curve_JPM.png",
+  "train_plot_path": "ga_markov_outputs_lstm/JPM/prediction_train_JPM.png",
+  "val_plot_path": "ga_markov_outputs_lstm/JPM/prediction_validation_JPM.png",
+  "used_params": {
+    "units": 192,
+    "layers": 1,
+    "dropout": 0.221,
+    "batch_size": 32,
+    "bidir": false
+  },
+  "used_ga_candidate": true,
+  "selected_candidate_label": "ga_best",
+  "selected_candidate_val_rmse_mean": 0.018523285356043192,
+  "selected_candidate_val_rmse_std": 0.0,
+  "selected_candidate_val_rmse_runs": [
+    0.018523285356043192
+  ],
+  "baseline_test_rmse": 8.62096985355014,
+  "final_test_rmse": 6.80068056403425,
+  "improvement_abs": 1.8202892895158893,
+  "improvement_pct": 21.1146694680331,
+  "plot_path": "ga_markov_outputs_lstm/JPM/prediction_JPM.png",
+  "predictions_path": "ga_markov_outputs_lstm/JPM/predictions_JPM.csv",
+  "summary_path": "ga_markov_outputs_lstm/JPM/summary.json"
+}

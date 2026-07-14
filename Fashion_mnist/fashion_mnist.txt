@@ -1,0 +1,14 @@
+# Requirements for fashion_mnist.ipynb
+#
+# Recommended:
+# - Use a virtual environment
+# - Use Python 3.9 to 3.11 for the smoothest TensorFlow support across OSes
+#
+# Install with:
+#   pip install -r fashion_mnist.txt
+
+numpy==2.0.2
+pandas==2.2.3
+matplotlib==3.9.4
+ipython==8.18.1
+tensorflow==2.20.0

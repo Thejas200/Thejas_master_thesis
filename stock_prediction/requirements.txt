@@ -1,0 +1,8 @@
+# Tested with Python 3.12
+numpy==2.0.2
+pandas==2.2.3
+pyarrow==19.0.0
+streamlit==1.53.1
+matplotlib==3.10.0
+scikit-learn==1.6.1
+tensorflow==2.20.0

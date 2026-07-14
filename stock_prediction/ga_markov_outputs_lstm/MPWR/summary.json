@@ -1,0 +1,102 @@
+{
+  "stock": "MPWR",
+  "out_dir": "ga_markov_outputs_lstm/MPWR",
+  "dataset_split_summary": {
+    "stock": "MPWR",
+    "time_step": 120,
+    "total_rows": 3431,
+    "total_sequences": 3311,
+    "raw_start": "2011-05-05",
+    "raw_end": "2024-12-31",
+    "train": {
+      "label": "train",
+      "sequence_count": 2648,
+      "sequence_pct": 79.975838115373,
+      "target_start": "2011-10-25",
+      "target_end": "2022-05-10"
+    },
+    "val": {
+      "label": "val",
+      "sequence_count": 331,
+      "sequence_pct": 9.996979764421624,
+      "target_start": "2022-05-11",
+      "target_end": "2023-09-06"
+    },
+    "test": {
+      "label": "test",
+      "sequence_count": 332,
+      "sequence_pct": 10.027182120205376,
+      "target_start": "2023-09-07",
+      "target_end": "2024-12-31"
+    }
+  },
+  "dataset_split_plot_path": "ga_markov_outputs_lstm/MPWR/dataset_split_MPWR.png",
+  "dataset_split_detail_plot_path": "ga_markov_outputs_lstm/MPWR/dataset_split_detail_MPWR.png",
+  "conditioning_partner_stock": "TSLA",
+  "feature_names": [
+    "target_close",
+    "partner_close",
+    "target_log_return",
+    "partner_log_return",
+    "target_roll_vol_20",
+    "target_ma_gap_20"
+  ],
+  "baseline_val_rmse": 0.047927091313679074,
+  "baseline_learning_curve_path": "ga_markov_outputs_lstm/MPWR/baseline_learning_curve_MPWR.png",
+  "ga_best_val_rmse": 0.03230716638729366,
+  "final_selected_val_rmse": 0.030099357698299398,
+  "selected_ga_candidate": {
+    "label": "ga_best",
+    "selection_method": "exact_global_minimum_search_val_rmse",
+    "generation": 9,
+    "candidate_id": 271,
+    "search_val_rmse": 0.03230716638729366,
+    "params": {
+      "units": 64,
+      "layers": 1,
+      "dropout": 0.05,
+      "batch_size": 32,
+      "bidir": false
+    }
+  },
+  "ga_evaluation_training": {
+    "max_epochs": 10,
+    "early_stopping_patience": 4,
+    "early_stopping_min_delta": 0.0001
+  },
+  "final_retraining": {
+    "max_epochs": 40,
+    "epochs_ran": 29,
+    "best_epoch": 23,
+    "early_stopping_patience": 6,
+    "early_stopping_min_delta": 0.0001,
+    "validation_rmse": 0.030099357698299398
+  },
+  "final_learning_curve_path": "ga_markov_outputs_lstm/MPWR/final_learning_curve_MPWR.png",
+  "train_plot_path": "ga_markov_outputs_lstm/MPWR/prediction_train_MPWR.png",
+  "val_plot_path": "ga_markov_outputs_lstm/MPWR/prediction_validation_MPWR.png",
+  "used_params": {
+    "units": 64,
+    "layers": 1,
+    "dropout": 0.05,
+    "batch_size": 32,
+    "bidir": false
+  },
+  "used_ga_candidate": true,
+  "selected_candidate_label": "ga_best",
+  "selected_candidate_generation": 9,
+  "selected_candidate_id": 271,
+  "selected_candidate_selection_method": "exact_global_minimum_search_val_rmse",
+  "selected_candidate_val_rmse_mean": 0.03230716638729366,
+  "selected_candidate_val_rmse_std": 0.0,
+  "selected_candidate_val_rmse_runs": [
+    0.03230716638729366
+  ],
+  "baseline_test_rmse": 56.07155288529782,
+  "final_test_rmse": 38.853234775743736,
+  "improvement_abs": 17.218318109554083,
+  "improvement_pct": 30.70776039460964,
+  "plot_path": "ga_markov_outputs_lstm/MPWR/prediction_MPWR.png",
+  "predictions_path": "ga_markov_outputs_lstm/MPWR/predictions_MPWR.csv",
+  "summary_path": "ga_markov_outputs_lstm/MPWR/summary.json"
+}
