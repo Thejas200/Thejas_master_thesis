@@ -35,7 +35,7 @@ it once and then reopen the terminal:
 conda init bash
 ```
 
-### Anaconda Terms Of Service (Only If Prompted)
+### Anaconda Terms Of Service
 
 Miniconda and Anaconda normally use Anaconda's `main` and `r` default channels.
 Recent Conda installations prompt for any required Terms of Service acceptance
