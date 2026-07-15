@@ -1,9 +1,9 @@
-# Stock Prediction And Fashion MNIST Experiments
+# Stock Prediction And Fashion MNIST
 
 This repository contains two GPU-based deep learning workflows:
 
 - Stock prediction using a Streamlit stock-pair selector and a GA+Markov LSTM training pipeline.
-- Fashion MNIST classification using the final notebook and its separate requirements file.
+- Fashion MNIST classification using the GA+Markov CNN training pipeline.
 
 ## Important GPU Requirement
 
@@ -35,7 +35,7 @@ it once and then reopen the terminal:
 conda init bash
 ```
 
-### Anaconda Terms Of Service (Only If Prompted)
+### Anaconda Terms Of Service
 
 Miniconda and Anaconda normally use Anaconda's `main` and `r` default channels.
 Recent Conda installations prompt for any required Terms of Service acceptance
@@ -125,7 +125,7 @@ Both `app.py` and `train_two_stocks.py` use this file by default.
 
 After the stock environment, GPU check, and dataset are ready, use one of these two options.
 
-### Option A: Run Everything Through Streamlit
+### Option A: Run Everything Through Streamlit (Preferred)
 
 Use this option if you want to select the stock pair and start training from the browser.
 
