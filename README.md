@@ -1,6 +1,6 @@
 # Stock Prediction And Fashion MNIST
 
-This repository contains two GPU-based deep learning workflows:
+This repository contains two GPU based deep learning workflows:
 
 - Stock prediction using a Streamlit stock-pair selector and a GA+Markov LSTM training pipeline.
 - Fashion MNIST classification using the GA+Markov CNN training pipeline.
@@ -70,11 +70,14 @@ The command should print at least one GPU device. If it prints an empty list, fi
 
 Key files used by the workflows:
 
+1. stock_prediction folder
 - `app.py`: Streamlit app for choosing a target stock and correlated partner stock.
 - `train_two_stocks.py`: GA+Markov LSTM training pipeline for the selected stock pair.
 - `sp500_close_stooq.parquet`: standard stock close-price dataset used by the app and trainer.
 - `selected_pair.json`: stock pair saved by the Streamlit app.
 - `requirements.txt`: dependencies for the stock workflow.
+
+2. Fashion_mnist folder
 - `fashion_mnist.ipynb`: final Fashion MNIST notebook.
 - `fashion_mnist.txt`: dependencies for the Fashion MNIST notebook.
 
