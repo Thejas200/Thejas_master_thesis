@@ -20,7 +20,7 @@ TRAIN_SUMMARY_PATH = os.path.join(TRAIN_OUT_DIR, "summary.json")
 TRAIN_LOG_PATH = ".streamlit_training.log"
 TRAIN_PID_PATH = ".streamlit_training.pid"
 
-# These are near-duplicate share classes, so we exclude them from partner suggestions.
+# These are near duplicate share classes, so we exclude them from partner suggestions.
 EXCLUDE_PAIRS = {("GOOG", "GOOGL"), ("GOOGL", "GOOG"), ("FOX", "FOXA"), ("FOXA", "FOX")}
 
 
@@ -51,8 +51,8 @@ def ranked_partners(returns: pd.DataFrame, target: str) -> pd.DataFrame:
     for other in returns.columns:
         if other == t or (t, other) in EXCLUDE_PAIRS:
             continue
-        # Filter near-duplicate share classes, then rank the rest by correlation strength
-        # and rolling-correlation consistency.
+        # Filter near duplicate share classes, then rank the rest by correlation strength
+        # and rolling correlation consistency.
         # `Series.corr(...)` here is Pearson correlation on the two return series.
         full_corr = float(returns[t].corr(returns[other]))
         if abs(full_corr) > MAX_FULL_CORR:
@@ -120,7 +120,7 @@ except Exception as e:
 returns = np.log(prices / prices.shift(1)).dropna()
 st.success(f"Loaded dataset: {prices.shape[0]} dates x {prices.shape[1]} tickers")
 
-# Step 1: choose a target ticker, then show the strongest non-trivial partners.
+# Step 1: choose a target ticker, then show the strongest non trivial partners.
 target = st.selectbox("1) Select target stock", sorted(returns.columns))
 n_top = st.number_input("2) Number of top correlated stocks", min_value=5, max_value=50, value=TOP_N_CORRELATED, step=1)
 

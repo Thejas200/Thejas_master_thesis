@@ -16,7 +16,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# Reduce TF noise (we still show epochs for baseline/final fits)
+# Reduce TF noise
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
 
 import tensorflow as tf
@@ -58,8 +58,7 @@ FEATURE_MA_WINDOW = 20
 
 
 def configure_output_dirs(out_dir: str, clear_existing: bool = True):
-    # These globals are reused by many helper functions, so we update them in one place
-    # whenever we switch from the root output folder to a per-stock subfolder.
+    # These globals are reused by many helper functions, so update them in one place
     global OUT_DIR, FIG_DIR, SUMMARY_PATH
     OUT_DIR = out_dir
     FIG_DIR = os.path.join(OUT_DIR, "figs")
@@ -146,7 +145,7 @@ def resolve_pair_context_for_stock(
     partner_stock: str,
     selection_path: str,
 ) -> Tuple[str, str]:
-    # For each training run, identify the "other" stock so pair-based features stay consistent.
+    # For each training run, identify the "other" stock so pair based features stay consistent.
     target, partner = resolve_stock_pair(
         use_streamlit_selection=use_streamlit_selection,
         target_stock=target_stock,
@@ -162,7 +161,7 @@ def resolve_pair_context_for_stock(
 
 
 def build_feature_frame(parquet_path: str, stock: str, partner_stock: str) -> pd.DataFrame:
-    # Derive a compact, higher-signal feature set from the two chosen close-price series.
+    # Derive a compact, higher signal feature set from the two chosen close-price series.
     stock = clean(stock)
     partner_stock = clean(partner_stock)
     pair_df = load_close_price_frame(parquet_path, [stock, partner_stock])
@@ -242,7 +241,7 @@ def build_dataset_split_summary(
     train_frac: float,
     val_frac: float,
 ) -> Dict:
-    # Summarize the chronological split in sequence-space so it reflects model training.
+    # Summarize the chronological split in sequence space so it reflects model training.
     n_rows = len(df)
     n_sequences = n_rows - time_step
     if n_sequences < 3:
@@ -277,7 +276,7 @@ def build_dataset_split_summary(
 
 
 def save_dataset_split_plot(df: pd.DataFrame, stock: str, split_summary: Dict, out_dir: str) -> str:
-    # Plot the full close-price history with train/val/test regions overlaid.
+    # Plot the full close price history with train/val/test regions overlaid.
     plot_path = os.path.join(out_dir, f"dataset_split_{stock}.png")
     fig, ax = plt.subplots(figsize=(14, 5))
     ax.plot(df.index, df[stock].to_numpy(), color="black", linewidth=1.1, label=f"{stock} close")
@@ -386,7 +385,7 @@ def save_prediction_phase_plot(
     phase_label: str,
     out_dir: str,
 ) -> str:
-    # Save prediction-vs-true, zoomed view, residuals, and rolling RMSE for one split.
+    # Save prediction vs true, zoomed view, residuals, and rolling RMSE for one split.
     safe_phase = phase_label.lower().replace(" ", "_")
     plot_path = os.path.join(out_dir, f"prediction_{safe_phase}_{stock}.png")
     true_values = np.asarray(true_values, dtype=float).reshape(-1)
@@ -486,7 +485,7 @@ def load_data_for_stock(
     if n < 1000:
         print(f"Warning: only {n} sequences formed. Consider reducing time_step or extending date range.")
 
-    # Keep the split chronological because time-series models must not shuffle future into past.
+    # Keep the split chronological because time series models must not shuffle future into past.
     n_train, n_val, n_test = compute_sequence_split_counts(n, train_frac, val_frac)
 
     X_tr = X_all[:n_train]
@@ -527,7 +526,7 @@ def build_baseline_lstm(sequence_length=120, num_features=2, output_dim=2, units
         model.add(layers.LSTM(max(units // 2, 16)))
     model.add(layers.Dropout(dropout))
     model.add(layers.Dense(output_dim))
-    # Adam + MSE is a standard setup for next-step regression.
+    # Adam + MSE is a standard setup for next step regression.
     model.compile(optimizer=keras.optimizers.Adam(1e-3), loss="mse", metrics=["mse"])
     return model
 
@@ -714,7 +713,7 @@ def save_transition_heatmap(P: np.ndarray, gen: int, fig_dir: str):
     plt.close()
 
 def population_to_df(pop: List[Individual]) -> pd.DataFrame:
-    # Convert in-memory GA objects into a table that is easy to inspect and export.
+    # Convert in memory GA objects into a table that is easy to inspect and export.
     rows = []
     for ind in pop:
         p = ind.params
@@ -794,8 +793,8 @@ def run_ga(
         next_id += 1
         population.append(ind)
 
-    # Exact global-best tracking is deliberately independent of the
-    # min_delta threshold used to decide early-stopping stagnation.
+    # Exact global best tracking is deliberately independent of the
+    # min_delta threshold used to decide early stopping stagnation.
     global_best_fit = -1e18
     global_best_ind: Optional[Individual] = None
     global_best_generation: Optional[int] = None
@@ -833,8 +832,8 @@ def run_ga(
         elite_k = max(1, int(elite_frac * pop_size))
         elites = population[:elite_k]
 
-        # This is fitness-proportionate(Roulette-wheel) selection: selection probability is proportional
-        # to each individual's fitness-derived weight.
+        # This is fitness proportionate(Roulette wheel) selection: selection probability is proportional
+        # to each individual's fitness derived weight.
         # Fitness values are NEGATIVE RMSE. Convert to positive weights for roulette.
         # We shift by the current best so weights are positive and preserve ordering.
         def make_roulette_selector(pop: List[Individual]):
@@ -850,7 +849,7 @@ def run_ga(
                 cdf = np.cumsum(probs)
                 cdf[-1] = 1.0
             def select_one():
-                # Draw one parent using roulette-wheel / fitness-proportionate selection.
+                # Draw one parent using roulette wheel / fitness proportionate selection.
                 r = rng.random()
                 idx = int(np.searchsorted(cdf, r, side="right"))
                 if idx >= len(pop):
@@ -918,7 +917,7 @@ def run_ga(
                 verbose=0 if not verbose_eval else 2
             )
 
-        # Sort children by fitness to define child rank-bins
+        # Sort children by fitness to define child rank bins
         children.sort(key=lambda z: z.fitness, reverse=True)
         child_ranks_sorted = list(range(len(children)))
         child_bins_sorted = rank_bins(child_ranks_sorted, num_bins=num_bins)
@@ -944,7 +943,7 @@ def run_ga(
             use_lazy=markov_lazy
         )
 
-        # Low-sample warning (pre-smoothing counts)
+        # Low sample warning (pre-smoothing counts)
         low_bins = np.where(counts < low_sample_threshold)[0]
         if len(low_bins) > 0:
             low_bin_ids = [int(b) for b in low_bins.tolist()]
@@ -992,7 +991,7 @@ def run_ga(
             global_best_ind = copy.deepcopy(current_best_ind)
             global_best_generation = gen
 
-        # min_delta is used only for the early-stopping stagnation decision.
+        # min_delta is used only for the early stopping stagnation decision.
         if current_best_fit > early_stop_reference_fit + min_delta:
             early_stop_reference_fit = current_best_fit
             stagnation = 0
@@ -1014,7 +1013,7 @@ def run_ga(
             os.path.join(OUT_DIR, "generation_summary.csv"), index=False
         )
 
-        # Mark the individual that established the search-wide best at this
+        # Mark the individual that established the search wide best at this
         # point. Rewriting here keeps this provenance beside every candidate.
         df["is_global_best_so_far"] = False
         if global_best_generation == gen:
@@ -1031,7 +1030,7 @@ def run_ga(
             )
             break
 
-    # Keep final-generation finalists as diagnostics only; they do not override
+    # Keep final generation finalists as diagnostics only; they do not override
     # the exact global best found anywhere in the search.
     population.sort(
         key=lambda z: z.fitness if z.fitness is not None else -1e18,
@@ -1133,7 +1132,7 @@ def train_single_stock(args, stock: str, clear_existing: bool = True) -> Dict:
         stage_label="Baseline",
         out_dir=OUT_DIR,
     )
-    # Predict on the held-out test set and convert back to real price units.
+    # Predict on the held out test set and convert back to real price units.
     y_pred_te_base = baseline.predict(X_te, verbose=0)
     y_pred_te_base_inv = scaler.inverse_transform(y_pred_te_base).reshape(-1)
     y_te_inv = y_te_inv.reshape(-1)
@@ -1204,7 +1203,7 @@ def train_single_stock(args, stock: str, clear_existing: bool = True) -> Dict:
         callbacks=[final_early_stop],
     )
     # This is a new stochastic fit with different training limits from the GA
-    # evaluation. Report its restored-best-weight validation score separately.
+    # evaluation. Report its restored best weight validation score separately.
     final_eval = best_model.evaluate(X_val, y_val, verbose=0)
     final_retrained_val_mse = float(
         final_eval[0] if isinstance(final_eval, (list, tuple)) else final_eval
@@ -1425,11 +1424,11 @@ def main(args):
 
     stock_summaries: Dict[str, Dict] = {}
     if args.parallel:
-        # Parallel mode launches one child process per stock to reduce wall-clock time.
+        # Parallel mode launches one child process per stock to reduce wall clock time.
         print("Parallel mode enabled: launching one process per stock.")
         procs = []
         for s in stocks:
-            # Spawn this same script again, but force it into single-stock mode.
+            # Spawn this same script again, but force it into single stock mode.
             cmd = [
                 "python", "-u", __file__,
                 "--parquet", args.parquet,
@@ -1472,8 +1471,8 @@ def main(args):
     print(f"\nCombined summary written to {combined_summary_path}")
 
 if __name__ == "__main__":
-    # Command-line flags let the same script support Streamlit mode, manual mode,
-    # sequential runs, and internal per-stock subprocess runs.
+    # Command line flags let the same script support Streamlit mode, manual mode,
+    # sequential runs, and internal per stock subprocess runs.
     parser = argparse.ArgumentParser(description="Train GA+Markov LSTM independently for two selected stocks.")
     parser.add_argument("--parquet", default=PARQUET_PATH, help="Path to parquet close-price dataset.")
     parser.add_argument("--selection", default=SELECTION_PATH, help="Path to selected_pair.json from Streamlit.")
